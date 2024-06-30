@@ -16,7 +16,11 @@ const userRoutes = require("./routes/userRoutes");
 
 // Use routes
 app.use("/api/users", userRoutes);
-
+app.use("/test", (req, res) => {
+  res.send({
+    test: "this works",
+  });
+});
 // Connect to database
 mongoose
   .connect(process.env.MONGO_URI, {
