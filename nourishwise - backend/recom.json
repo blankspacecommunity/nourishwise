@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://nourishwise.onrender.com",
+      "url": "https://nourishwise.onrender.com/recom.json",
       "description": "Production server"
     }
   ],
