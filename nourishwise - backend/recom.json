@@ -1,0 +1,234 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Health Food Recommendation API",
+    "version": "1.1.0",
+    "description": "API for getting detailed food recommendations based on various health conditions"
+  },
+  "servers": [
+    {
+      "url": "https://nourishwise.onrender.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/health-issues": {
+      "get": {
+        "summary": "Get all available health issues",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HealthIssue"
+                  }
+                },
+                "example": [
+                  "diabetes",
+                  "hypertension",
+                  "celiac_disease",
+                  "lactose_intolerance",
+                  "gout",
+                  "heart_disease",
+                  "osteoporosis",
+                  "ibs"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/food-categories": {
+      "get": {
+        "summary": "Get all food categories",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FoodCategory"
+                  }
+                },
+                "example": [
+                  "fruits",
+                  "vegetables",
+                  "grains",
+                  "proteins",
+                  "dairy",
+                  "beverages",
+                  "nuts_and_seeds",
+                  "legumes",
+                  "herbs_and_spices"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/recommendations": {
+      "get": {
+        "summary": "Get food recommendations based on health issues",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "health_issues",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/HealthIssue"
+              }
+            },
+            "description": "List of health issues to get recommendations for",
+            "example": ["diabetes", "hypertension"]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "recommended": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "$ref": "#/components/schemas/FoodCategory"
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "benefits": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "restricted": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "reason": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "recommended": [
+                    {
+                      "category": "fruits",
+                      "items": [
+                        {
+                          "name": "berries",
+                          "benefits": "Low glycemic index, high in antioxidants"
+                        },
+                        {
+                          "name": "citrus fruits",
+                          "benefits": "High in vitamin C, may help lower blood pressure"
+                        }
+                      ]
+                    },
+                    {
+                      "category": "vegetables",
+                      "items": [
+                        {
+                          "name": "leafy greens",
+                          "benefits": "Rich in nutrients, low in calories, good for blood pressure"
+                        },
+                        {
+                          "name": "bell peppers",
+                          "benefits": "High in vitamin C, low in carbs"
+                        }
+                      ]
+                    },
+                    {
+                      "category": "grains",
+                      "items": [
+                        {
+                          "name": "whole grain bread",
+                          "benefits": "High in fiber, helps control blood sugar"
+                        },
+                        {
+                          "name": "quinoa",
+                          "benefits": "Complete protein, rich in minerals"
+                        }
+                      ]
+                    }
+                  ],
+                  "restricted": [
+                    {
+                      "name": "sugary foods",
+                      "reason": "Can cause rapid spikes in blood sugar"
+                    },
+                    {
+                      "name": "high-sodium foods",
+                      "reason": "Can increase blood pressure"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HealthIssue": {
+        "type": "string",
+        "enum": [
+          "diabetes",
+          "hypertension",
+          "celiac_disease",
+          "lactose_intolerance",
+          "gout",
+          "heart_disease",
+          "osteoporosis",
+          "ibs"
+        ]
+      },
+      "FoodCategory": {
+        "type": "string",
+        "enum": [
+          "fruits",
+          "vegetables",
+          "grains",
+          "proteins",
+          "dairy",
+          "beverages",
+          "nuts_and_seeds",
+          "legumes",
+          "herbs_and_spices"
+        ]
+      }
+    }
+  }
+}

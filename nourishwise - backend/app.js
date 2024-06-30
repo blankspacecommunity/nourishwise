@@ -21,6 +21,10 @@ app.use("/test", (req, res) => {
     test: "this works",
   });
 });
+
+app.get("/recom.json", (req, res) => {
+  res.sendFile(__dirname + "/recom.json");
+});
 // Connect to database
 mongoose
   .connect(process.env.MONGO_URI, {
