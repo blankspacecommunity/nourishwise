@@ -7,15 +7,15 @@
   },
   "servers": [
     {
-      "url": "http://localhost:5000",
-      "description": "Local server"
+      "url": "https://nourishwise.onrender.com",
+      "description": "Render server"
     }
   ],
   "paths": {
     "/generate": {
       "post": {
         "summary": "Generate text based on the given prompt",
-        "description": "Send a prompt to the IBM Watson LLM and get a streamed response",
+        "description": "Send a prompt to the IBM Watson LLM via Watson Assistant action and get a JSON response",
         "requestBody": {
           "required": true,
           "content": {
@@ -39,8 +39,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "Generated text response"
+                  "type": "object",
+                  "properties": {
+                    "response_text": {
+                      "type": "string",
+                      "example": "Generated text response"
+                    }
+                  }
                 }
               }
             }
