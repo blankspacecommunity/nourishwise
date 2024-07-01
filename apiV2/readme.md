@@ -1,13 +1,13 @@
 # NourishWise API
 
-NourishWise API is a backend service that utilizes IBM's Granite Language Model to generate text-based responses based on user prompts. This service is designed for the NourishWise food recommendation application, which helps users find nearby restaurants with healthy food options tailored to their health conditions and dietary goals.
+NourishWise API is a backend service that utilises IBM's GRANITE_13B_CHAT_V2 to generate text-based responses based on user prompts. This service is designed for the NourishWise food recommendation application, which helps users find nearby restaurants with healthy food options tailored to their health conditions and dietary goals.
 
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
 - [Environment Variables](#environment-variables)
-- [License](#license)
+- [Licence](#licence)
 
 ## Installation
 
@@ -86,6 +86,6 @@ The application requires the following environment variables to be set:
 - `PROJECT_ID`: Your IBM Watson project ID.
 - `PORT`: The port on which the Flask application will run (default: 5000).
 
-## License
+## Licence
 
 TODO
