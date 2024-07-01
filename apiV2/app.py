@@ -34,11 +34,14 @@ class GenAI:
 
         generated_response = model.generate_text_stream(prompt=q)
 
+        response_chunks = []
         if generated_response:
             for chunk in generated_response:
-                yield chunk
+                response_chunks.append(chunk)
         else:
-            yield "No response generated"
+            response_chunks.append("No response generated")
+
+        return response_chunks
 
 g = GenAI()
 
@@ -49,11 +52,8 @@ def generate_text():
     if not prompt:
         return jsonify({'error': 'Prompt is required'}), 400
 
-    def generate():
-        for chunk in g.textgen(prompt):
-            yield chunk
-
-    return Response(generate(), content_type='text/plain')
+    response_chunks = g.textgen(prompt)
+    return jsonify({'response': ''.join(response_chunks)})
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
