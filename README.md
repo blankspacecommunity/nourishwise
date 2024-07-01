@@ -4,7 +4,7 @@ NourishWise API is a backend service that utilises IBM's GRANITE_13B_CHAT_V2 to 
 
 You don't have to install anything. The API is currently live. [Click to test api endpoint](https://nourishwise.onrender.com/generate)
 
-Demo Video: [watch demo video](https://drive.google.com/drive/folders/12OEbEeSLpxCwTf9WtGTolwNo31qeQ98s?usp=drive_link)
+Demo Video: [watch demo video](https://youtu.be/0l1rC3WXNs0)
 
 Assistant Link: [Open Assistant Link](https://web-chat.global.assistant.watson.appdomain.cloud/preview.html?backgroundImageURL=https%3A%2F%2Fus-south.assistant.watson.cloud.ibm.com%2Fpublic%2Fimages%2Fupx-0cdfb006-d2f7-45c8-b1b7-b2b9b8e443bd%3A%3A00921169-c8fb-4a7b-90ba-b48cae577d0f&integrationID=f56651cf-5f9d-4db3-a679-42e72123db35&region=us-south&serviceInstanceID=0cdfb006-d2f7-45c8-b1b7-b2b9b8e443bd)
 
