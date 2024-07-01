@@ -44,7 +44,7 @@ NourishWise API is a backend service that utilises IBM's GRANITE_13B_CHAT_V2 to 
    ```
 
 2. **Access the API:**
-   The API will be available at `http://localhost:5000`.
+   The API will be available at `[link to api](https://nourishwise.onrender.com/generate)`.
 
 ## API Endpoints
 
