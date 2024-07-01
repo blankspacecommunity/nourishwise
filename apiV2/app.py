@@ -1,11 +1,10 @@
-from flask import Flask, request, jsonify
-from dotenv import load_dotenv
-import os
+from flask import Flask, request, Response, jsonify
 from ibm_watson_machine_learning.foundation_models import Model
 from ibm_watsonx_ai.foundation_models.utils.enums import ModelTypes
 from ibm_watson_machine_learning.metanames import GenTextParamsMetaNames as GenParams
+from dotenv import load_dotenv
+import os
 
-# Load environment variables from .env file
 load_dotenv()
 
 app = Flask(__name__)
@@ -25,7 +24,7 @@ class GenAI:
             model_id='ibm/granite-13b-chat-v2',
             params=generate_params,
             credentials={
-                "apikey": os.getenv("API_KEY"),
+                "apikey": os.getenv("APIKEY"),
                 "url": "https://us-south.ml.cloud.ibm.com"
             },
             project_id=os.getenv("PROJECT_ID")
@@ -35,14 +34,11 @@ class GenAI:
 
         generated_response = model.generate_text_stream(prompt=q)
 
-       
         if generated_response:
             for chunk in generated_response:
-                response_text += chunk
+                yield chunk
         else:
-            response_text = "No response generated"
-
-        return response_text
+            yield "No response generated"
 
 g = GenAI()
 
@@ -53,8 +49,12 @@ def generate_text():
     if not prompt:
         return jsonify({'error': 'Prompt is required'}), 400
 
-    response_text = g.textgen(prompt)
-    return jsonify({'response': response_text})
+    def generate():
+        for chunk in g.textgen(prompt):
+            yield chunk
+
+    return Response(generate(), content_type='text/plain')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
