@@ -1,4 +1,4 @@
-from flask import Flask, request, Response, jsonify
+from flask import Flask, request, jsonify
 from ibm_watson_machine_learning.foundation_models import Model
 from ibm_watsonx_ai.foundation_models.utils.enums import ModelTypes
 from ibm_watson_machine_learning.metanames import GenTextParamsMetaNames as GenParams
@@ -32,13 +32,12 @@ class GenAI:
 
         q = prompt
 
-        generated_response = model.generate_text_stream(prompt=q)
+        generated_response = model.generate_text(prompt=q)
 
         if generated_response:
-            for chunk in generated_response:
-                yield chunk
+            return generated_response
         else:
-            yield "No response generated"
+            return "No response generated"
 
 g = GenAI()
 
@@ -49,11 +48,8 @@ def generate_text():
     if not prompt:
         return jsonify({'error': 'Prompt is required'}), 400
 
-    def generate():
-        for chunk in g.textgen(prompt):
-            yield chunk
-
-    return Response(generate(), content_type='text/plain')
+    response_text = g.textgen(prompt)
+    return jsonify(response_text)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))

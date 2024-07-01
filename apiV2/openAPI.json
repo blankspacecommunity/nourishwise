@@ -37,7 +37,7 @@
           "200": {
             "description": "Successful response",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
                   "type": "string",
                   "example": "Generated text response"
