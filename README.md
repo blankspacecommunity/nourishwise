@@ -2,6 +2,8 @@
 
 NourishWise API is a backend service that utilises IBM's GRANITE_13B_CHAT_V2 to generate text-based responses based on user prompts. This service is designed for the NourishWise food recommendation application, which helps users find nearby restaurants with healthy food options tailored to their health conditions and dietary goals.
 
+You don't have to install anything. The API will be available at [test api](https://nourishwise.onrender.com/generate)
+
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
