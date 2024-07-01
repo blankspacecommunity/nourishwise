@@ -9,13 +9,15 @@
     {
       "url": "https://nourishwise.onrender.com",
       "description": "Render server"
+      "url": "https://nourishwise.onrender.com",
+      "description": "Render server"
     }
   ],
   "paths": {
     "/generate": {
       "post": {
         "summary": "Generate text based on the given prompt",
-        "description": "Send a prompt to the IBM Watson LLM via Watson Assistant action and get a JSON response",
+        "description": "Send a prompt to the IBM Watson LLM and receive a JSON response",
         "requestBody": {
           "required": true,
           "content": {
